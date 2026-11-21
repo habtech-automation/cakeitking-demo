@@ -152,6 +152,34 @@ p{margin:0}
 .fire-steps{position:absolute;bottom:5svh;left:0;right:0;z-index:4;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 16px}
 .fire-steps span{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:rgba(6,4,3,.6)}
 .fire-steps span.on{color:#17100b;background:var(--gold);border-color:var(--gold);font-weight:700}
+/* ASSISTANT, the automation layer */
+.assistant{background:var(--bg);border-top:1px solid var(--line);padding:110px 0}
+.assistant-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.assistant h2{font-size:clamp(38px,5.4vw,60px);margin-bottom:18px}
+.assistant h2 em{color:var(--ember-soft)}
+.assistant .intro{color:var(--ink-soft);font-size:17.5px;max-width:52ch;margin-bottom:34px}
+.cap{padding:22px 0;border-top:1px solid var(--line)}
+.cap:last-of-type{border-bottom:1px solid var(--line)}
+.cap h3{font-size:clamp(23px,2.8vw,29px);margin-bottom:6px}
+.cap h3 span{color:var(--gold);font-family:var(--font-t);font-size:13px;font-weight:700;letter-spacing:.18em;display:block;margin-bottom:6px}
+.cap p{color:var(--ink-soft);font-size:15.5px;max-width:52ch}
+.assistant .frame-note{margin-top:26px;font-size:14.5px;color:var(--ink-dim);max-width:52ch}
+.diff-note{margin-bottom:30px;padding:20px 22px;background:var(--surface);border-radius:12px;font-size:15.5px;color:var(--ink-soft);max-width:52ch}
+.diff-note b{color:var(--gold);font-family:var(--font-d);font-size:19px;display:block;margin-bottom:4px}
+.chat-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;position:sticky;top:96px}
+.chat-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--surface2)}
+.chat-head b{font-family:var(--font-d);font-size:21px;font-weight:600}
+.chat-head span{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#17100b;background:var(--gold);font-weight:700;border-radius:999px;padding:5px 11px;white-space:nowrap}
+.chat-log{padding:20px;display:flex;flex-direction:column;gap:12px;max-height:380px;overflow-y:auto}
+.msg{max-width:88%;padding:12px 15px;border-radius:14px;font-size:15px;line-height:1.5}
+.msg.bot{background:var(--surface2);border:1px solid var(--line);color:var(--ink);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:var(--ember);color:#17100b;font-weight:600;align-self:flex-end;border-bottom-right-radius:4px}
+.msg a{color:var(--gold);font-weight:700}
+.chat-chips{padding:0 20px 6px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;background:transparent;border:1px solid rgba(244,234,217,.4);color:var(--ink);font-family:var(--font-t);font-size:14px;font-weight:600;border-radius:999px;padding:10px 16px;cursor:pointer;min-height:44px}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+.chip:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chat-foot{padding:12px 20px 18px;font-size:12.5px;color:var(--ink-dim);border-top:1px solid var(--line);margin-top:14px}
 /* VISIT, reveal wipe */
 .visit{padding:110px 0}
 .visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
@@ -175,7 +203,8 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:26px 0 34px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;font-size:13.5px;color:var(--ink-dim)}
 footer a{color:var(--ink-soft)}
 @media (max-width:860px){
-  .story-grid,.visit-grid{grid-template-columns:1fr;gap:36px}
+  .story-grid,.visit-grid,.assistant-grid{grid-template-columns:1fr;gap:36px}
+  .chat-panel{position:static}
   .story-photo{position:static}
   .story-photo img{height:340px}
   .visit-photo img{height:360px}
@@ -190,6 +219,7 @@ footer a{color:var(--ink-soft)}
   .nav{flex-wrap:nowrap;gap:0}
   .nav a{font-size:13px;padding:10px 6px}
   .nav a[href*="instagram"]{display:none}
+  .nav a[href="#story"]{display:none}
   .nav .btn{padding:10px 14px !important;font-size:13px;white-space:nowrap;margin-left:6px}
   .flame{height:170px;width:92px}
 }
@@ -212,6 +242,7 @@ footer a{color:var(--ink-soft)}
     <nav class="nav" aria-label="Main">
       <a href="#story">Story</a>
       <a href="#menu">Menu</a>
+      <a href="#assistant">Assistant</a>
       <a href="#visit">Visit</a>
       <a href="https://www.instagram.com/pam.restaurant/" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a class="btn" href="https://www.sevenrooms.com/explore/pam/reservations/create/search" target="_blank" rel="noopener noreferrer">Book a table</a>
@@ -326,6 +357,45 @@ footer a{color:var(--ink-soft)}
       </div>
       <div class="fire-steps" aria-hidden="true">
         <span data-step="0">Coals</span><span data-step="1">Embers</span><span data-step="2">Flame</span><span data-step="3">The dish</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="assistant" id="assistant">
+    <div class="wrap assistant-grid">
+      <div>
+        <h2>More than a website.<br>An assistant that <em>never clocks off.</em></h2>
+        <p class="intro">A website shows guests the menu. The finished version of this site also answers them. PAM's assistant sits on the page and handles the questions guests ask at midnight, during service, and everywhere in between, so the team can stay on the fire.</p>
+        <div class="diff-note">
+          <b>What this adds on top of the current site</b>
+          PAM does not have to leave its current site behind. The site PAM has now is a single page soft launch teaser. It can announce the restaurant, but it cannot answer a guest, take an enquiry, or follow up. This automation layer sits on top of that site, so PAM keeps the page it already has and gains an assistant that works on it.
+        </div>
+        <div class="cap">
+          <h3><span>01</span>Answers instantly, at any hour</h3>
+          <p>Opening hours, what is on the menu, dietary questions, group bookings, where to find the restaurant. Guests get a straight answer straight away, not a form to wait on.</p>
+        </div>
+        <div class="cap">
+          <h3><span>02</span>Takes enquiries while the team cooks</h3>
+          <p>Booking enquiries and party enquiries are taken on the page and pointed to PAM's SevenRooms reservations, even in the middle of a busy service.</p>
+        </div>
+        <div class="cap">
+          <h3><span>03</span>Follows up, so nothing sits unanswered</h3>
+          <p>Every enquiry is followed up automatically, so a guest who asked a question hears back instead of drifting to another restaurant.</p>
+        </div>
+        <p class="frame-note">This assistant is part of the finished version of the site, added on top of the site PAM already has, not a replacement for it. The panel beside this text is a working demo of how it would feel for PAM's guests, using only the details already on this page.</p>
+      </div>
+      <div class="chat-panel" aria-label="Assistant demo">
+        <div class="chat-head"><b>PAM Assistant</b><span>Demo</span></div>
+        <div class="chat-log" id="chatLog" aria-live="polite">
+          <div class="msg bot">Hello, and welcome to PAM, People Around Me. Ask me about our hours, the menu, group bookings, or where to find us. Tap a question below to try me.</div>
+        </div>
+        <div class="chat-chips" role="group" aria-label="Try a question">
+          <button type="button" class="chip" data-q="hours">Opening hours?</button>
+          <button type="button" class="chip" data-q="menu">What is on the menu?</button>
+          <button type="button" class="chip" data-q="groups">Do you take group bookings?</button>
+          <button type="button" class="chip" data-q="where">Where are you?</button>
+        </div>
+        <p class="chat-foot">Demo of the assistant PAM would have. Answers come only from the details on this page. Nothing you tap here is sent or collected.</p>
       </div>
     </div>
   </section>
@@ -474,6 +544,40 @@ footer a{color:var(--ink-soft)}
   window.addEventListener("scroll", onScroll, {passive:true});
   window.addEventListener("resize", onScroll);
   update();
+})();
+</script>
+<script>
+(function(){
+  var log=document.getElementById("chatLog");
+  if(!log) return;
+  var book='https://www.sevenrooms.com/explore/pam/reservations/create/search';
+  var answers={
+    hours:"We are open Tuesday to Friday, 12pm to 3pm and 5pm to 10pm, and Saturday 12pm to 10pm. We are closed on Sunday and Monday.",
+    menu:"From the fire, for the table: miang kham betel leaf wraps, khao soi noi rice flour pancake, Chiang Rai sai oua sausage, mutton hunglay curry, fried red curry sticky rice balls with tamarind caramel, and roast duck in red curry. Plates are made for sharing.",
+    groups:"Yes. PAM's plates are made for sharing, so the table eats together, and group and party enquiries are welcome. Bookings run through SevenRooms, PAM's reservations route. <a href=\""+book+"\" target=\"_blank\" rel=\"noopener noreferrer\">Book a table on SevenRooms</a>.",
+    where:"You will find us at 61 Charterhouse Street, Farringdon, London EC1M 6HA."
+  };
+  var labels={
+    hours:"Opening hours?",
+    menu:"What is on the menu?",
+    groups:"Do you take group bookings?",
+    where:"Where are you?"
+  };
+  function add(text, who){
+    var d=document.createElement("div");
+    d.className="msg "+who;
+    if(who==="bot"){ d.innerHTML=text; } else { d.textContent=text; }
+    log.appendChild(d);
+    log.scrollTop=log.scrollHeight;
+  }
+  var chips=document.querySelectorAll(".chip[data-q]");
+  chips.forEach(function(chip){
+    chip.addEventListener("click", function(){
+      var key=chip.getAttribute("data-q");
+      add(labels[key], "user");
+      add(answers[key], "bot");
+    });
+  });
 })();
 </script>
 </body>
