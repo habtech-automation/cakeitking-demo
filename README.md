@@ -1,3 +1,4 @@
-# PAM Restaurant demo website
+# CakeItKing, Toronto demo website
 
-One page demo site built by Habtech for PAM, Farringdon, London. Single index.html, no build step.
+Demo one page website built by Habtech for CakeItKing, Toronto.
+Static site, open index.html. Demo preview only, not the live website.
